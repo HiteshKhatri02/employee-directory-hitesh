@@ -1,0 +1,24 @@
+{
+  "name": "employee-directory-hitesh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiteshKhatri02/employee-directory-hitesh.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HiteshKhatri02/employee-directory-hitesh/issues"
+  },
+  "homepage": "https://github.com/HiteshKhatri02/employee-directory-hitesh#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
