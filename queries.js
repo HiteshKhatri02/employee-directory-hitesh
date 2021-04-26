@@ -1,4 +1,12 @@
 const { Client } = require('pg');
+var unload = require('unload');
+var ret = unload.add(function(){
+	if(client){
+		client.end();
+	}
+});
+ 
+ret.remove(); // removes the event-handler
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
@@ -7,9 +15,10 @@ const client = new Client({
   query_timeout: 2000, // number of milliseconds before a query call will timeout, default is no timeout
   connectionTimeoutMillis: 1000,
 });
+client.connect();
 
 const createEmployee = (request, response) => {
-	client.connect();
+	
 	const { name, employee_Id } = request.body;
 	client.query('INSERT INTO emp (name, employee_Id) VALUES ($1, $2)', [ name, employee_Id ], (error, result) => {
 		if (error) {
@@ -25,7 +34,6 @@ const createEmployee = (request, response) => {
 					request.body.name
 			);
 	});
-	client.end();
 };
 
 const viewEmployee = (request, response) => {
@@ -34,7 +42,7 @@ const viewEmployee = (request, response) => {
 		text: 'SELECT employee_id, name FROM emp WHERE employee_id = $1',
 		values: [ employee_Id ]
 	};
-	client.connect();
+
 	client.query(query, (error, result) => {
 		if (error) {
 			console.log(JSON.stringify(error));
@@ -53,7 +61,6 @@ const viewEmployee = (request, response) => {
 			response.status(400).send('Record does not exist.');
 		}
 	});
-	client.end();
 };
 
 const deleteEmployee = (request, response) => {
@@ -62,8 +69,8 @@ const deleteEmployee = (request, response) => {
 		text: 'DELETE FROM emp WHERE employee_Id = $1',
 		values: [ employee_Id ]
 	};
-	client.connect();
 	client.query(query, (error, result) => {
+
 		if (error) {
 			console.log(JSON.stringify(error));
 			throw error;
@@ -71,7 +78,6 @@ const deleteEmployee = (request, response) => {
 		console.log(JSON.stringify(result));
 		response.status(201).send('Record has been deleted.');
 	});
-	client.end();
 };
 
 // const { Pool } = require('pg')

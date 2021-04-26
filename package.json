@@ -20,6 +20,7 @@
   "homepage": "https://github.com/HiteshKhatri02/employee-directory-hitesh#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "unload": "^2.2.0"
   }
 }
