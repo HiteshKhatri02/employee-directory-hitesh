@@ -11,11 +11,11 @@
   <header>
     <h1>Employee Database</h1>
   </header>
-  <form action="/add" method="POST">
+  <form action="/employee" method="POST">
     <fieldset>
       <h3>Add new employee</h3>
       <label>Employee ID</label>
-      <input type="text" id='empID' name="id" required>
+      <input type="text" id='employee_Id' name="employee_Id" required>
       <br><br>
       <label>Name</label>
       <input type="text" id="name" name="name" required>
@@ -28,31 +28,18 @@
     <fieldset>
       <h3>View an employee</h3>
       <label>Employee ID</label>
-      <input type="text" id="empID" name="id" required>
+      <input type="text" id="employee_Id" name="employee_Id" required>
       <br><br>
       <button type="reset">Reset</button>
       <button type="submit">Submit</button>
       <br><br><br>
     </fieldset>
   </form>
-  <form action="/update" method="POST">
-    <fieldset>
-      <h3>Update an employee</h3>
-      <label>Employee ID</label>
-      <input type="text" id='empID' name="id" required>
-      <br><br>
-      <label>New Name</label>
-      <input type="text" id="name" name="name" required>
-      <br><br>
-      <button type="reset">Reset</button>
-      <button type="submit">Submit</button>
-    </fieldset>
-  </form>
-  <form action="/delete" method="POST">
+  <form action="/deleteEmployee" method="POST">
     <fieldset>
       <h3>Delete an employee</h3>
       <label>Employee ID</label>
-      <input type="text" id='empID' name="id" required>
+      <input type="text" id='employee_Id' name="employee_Id" required>
       <br><br>
       <button type="reset">Reset</button>
       <button type="submit">Submit</button>
