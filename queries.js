@@ -46,7 +46,7 @@ const viewEmployee = (request, response) => {
 			response
 				.status(201)
 				.send(
-					'New employee has been added into the database with ID = ' +
+					'Find resource details = ' +
 						result.rows[0].employee_id +
 						' and Name = ' +
 						result.rows[0].name
