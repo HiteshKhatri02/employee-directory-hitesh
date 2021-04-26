@@ -7,12 +7,12 @@ const client = new Client({
   query_timeout: 2000, // number of milliseconds before a query call will timeout, default is no timeout
   connectionTimeoutMillis: 1000,
 });
+client.connect();
 
 const createEmployee = (request, response) => {
-	client.connect();
+	
 	const { name, employee_Id } = request.body;
 	client.query('INSERT INTO emp (name, employee_Id) VALUES ($1, $2)', [ name, employee_Id ], (error, result) => {
-		client.end();
 		if (error) {
 			console.log(JSON.stringify(error));
 			throw error;
@@ -29,7 +29,6 @@ const createEmployee = (request, response) => {
 };
 
 const viewEmployee = (request, response) => {
-	client.connect();
 	const { employee_Id } = request.body;
 	const query = {
 		text: 'SELECT employee_id, name FROM emp WHERE employee_id = $1',
@@ -37,7 +36,6 @@ const viewEmployee = (request, response) => {
 	};
 
 	client.query(query, (error, result) => {
-		client.end();
 		if (error) {
 			console.log(JSON.stringify(error));
 			throw error;
@@ -63,9 +61,7 @@ const deleteEmployee = (request, response) => {
 		text: 'DELETE FROM emp WHERE employee_Id = $1',
 		values: [ employee_Id ]
 	};
-	client.connect();
 	client.query(query, (error, result) => {
-		client.end();
 		if (error) {
 			console.log(JSON.stringify(error));
 			throw error;
